@@ -6,6 +6,8 @@
  * Time: 23:14
  */
 
+namespace Money;
+
 use PHPUnit\Framework\TestCase;
 
 class Test extends TestCase
