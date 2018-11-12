@@ -12,4 +12,9 @@ namespace Money;
 class Money
 {
     protected $amount;
+
+    public function equals(Object $object): bool
+    {
+        return ($object instanceof Money) && $this->amount === $object->amount;
+    }
 }
