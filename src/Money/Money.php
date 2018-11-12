@@ -11,5 +11,5 @@ namespace Money;
 
 class Money
 {
-
+    protected $amount;
 }

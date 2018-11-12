@@ -11,8 +11,6 @@ namespace Money;
 
 class Dollar extends Money
 {
-    private $amount;
-
     /**
      * Dollar constructor.
      * @param $amount
@@ -27,8 +25,8 @@ class Dollar extends Money
         return new Dollar($this->amount * $multiplier);
     }
 
-    public function equals(Dollar $dollar): bool
+    public function equals(Object $object): bool
     {
-        return $this->amount === $dollar->amount;
+        return ($object instanceof Money) && $this->amount === $object->amount;
     }
 }
