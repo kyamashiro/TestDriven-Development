@@ -31,5 +31,4 @@ class Dollar
     {
         return $this->amount === $dollar->amount;
     }
-
 }
