@@ -22,14 +22,14 @@ class Dollar
         $this->amount = $amount;
     }
 
-    public function times(int $multiplier)
+    public function times(int $multiplier): Dollar
     {
         return new Dollar($this->amount * $multiplier);
     }
 
-    public function equals(Dollar $dollar)
+    public function equals(Dollar $dollar): bool
     {
-        return true;
+        return $this->amount === $dollar->amount;
     }
 
 }
