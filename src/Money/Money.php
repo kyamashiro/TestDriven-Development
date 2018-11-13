@@ -15,7 +15,9 @@ abstract class Money
 
     abstract function times(int $multiplier): Money;
 
-    public function equals(Object $object): bool
+    abstract function currency(): string;
+
+    public function equals(Money $object): bool
     {
         return ($object instanceof Money) && $this->amount === $object->amount && get_class($object) === get_class($this);
     }

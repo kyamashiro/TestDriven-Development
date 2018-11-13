@@ -25,4 +25,8 @@ class Dollar extends Money
         return new Dollar($this->amount * $multiplier);
     }
 
+    public function currency(): string
+    {
+        return 'USD';
+    }
 }
