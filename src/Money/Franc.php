@@ -12,15 +12,16 @@ class Franc extends Money
 {
     /**
      * Franc constructor.
-     * @param $amount
+     * @param int $amount
+     * @param string $currency
      */
-    public function __construct($amount)
+    public function __construct(int $amount, string $currency)
     {
-        $this->amount = $amount;
+        parent::__construct($amount, $currency);
     }
 
     public function times(int $multiplier): Money
     {
-        return new Franc($this->amount * $multiplier);
+        return Money::Franc($this->amount * $multiplier);
     }
 }
