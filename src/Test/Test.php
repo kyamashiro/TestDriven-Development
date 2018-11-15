@@ -45,4 +45,13 @@ class Test extends TestCase
     {
         $this->assertTrue((new Money(10, 'CHF'))->equals(new Franc(10, 'CHF')));
     }
+
+    public function testSimpleAddition()
+    {
+        $five = Money::dollar(5);
+        $sum = $five->plus($five);
+        $bank = new Bank();
+        $reduced = $bank->reduce($sum, "USD");
+        $this->assertEquals(Money::dollar(10), $reduced);
+    }
 }
