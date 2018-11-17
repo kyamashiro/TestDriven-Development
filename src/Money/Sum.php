@@ -10,7 +10,13 @@ namespace Money;
 
 class Sum implements Expression
 {
+    /**
+     * @var Money
+     */
     public $augend;
+    /**
+     * @var Money
+     */
     public $addend;
 
     /**

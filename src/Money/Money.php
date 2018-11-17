@@ -10,7 +10,13 @@ namespace Money;
 
 class Money implements Expression
 {
+    /**
+     * @var int
+     */
     public $amount;
+    /**
+     * @var string
+     */
     public $currency;
 
     /**
