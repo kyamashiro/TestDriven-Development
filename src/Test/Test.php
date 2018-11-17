@@ -8,6 +8,7 @@
 
 namespace Money;
 
+use phpDocumentor\Reflection\Types\Object_;
 use PHPUnit\Framework\TestCase;
 
 class Test extends TestCase
@@ -62,6 +63,14 @@ class Test extends TestCase
     {
         $bank = new Bank();
         $result = $bank->reduce(Money::dollar(1), "USD");
+        $this->assertEquals(Money::dollar(1), $result);
+    }
+
+    public function testReduceMoneyDifficultCurrency()
+    {
+        $bank = new Bank();
+        $bank->addRate("CHF", "USD");
+        $result = $bank->reduce(Money::franc(2), "USD");
         $this->assertEquals(Money::dollar(1), $result);
     }
 }
