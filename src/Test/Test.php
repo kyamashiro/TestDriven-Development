@@ -32,11 +32,6 @@ class Test extends TestCase
         $this->assertEquals('CHF', Money::franc(1)->currency());
     }
 
-    public function testDifferentClassEquality()
-    {
-        $this->assertTrue((new Money(10, 'CHF'))->equals(new Franc(10, 'CHF')));
-    }
-
     public function testSimpleAddition()
     {
         $five = Money::dollar(5);
@@ -44,5 +39,29 @@ class Test extends TestCase
         $bank = new Bank();
         $reduced = $bank->reduce($sum, "USD");
         $this->assertEquals(Money::dollar(10), $reduced);
+    }
+
+    public function testPlusReturnsSum()
+    {
+        $five = Money::dollar(5);
+        $result = $five->plus($five);
+        $sum = $result;
+        $this->assertEquals($five, $sum->augend);
+        $this->assertEquals($five, $sum->addend);
+    }
+
+    public function testReducesSum()
+    {
+        $sum = new Sum(Money::dollar(3), Money::dollar(4));
+        $bank = new Bank();
+        $result = $bank->reduce($sum, "USD");
+        $this->assertEquals(Money::dollar(7), $result);
+    }
+
+    public function testReduceMoney()
+    {
+        $bank = new Bank();
+        $result = $bank->reduce(Money::dollar(1), "USD");
+        $this->assertEquals(Money::dollar(1), $result);
     }
 }

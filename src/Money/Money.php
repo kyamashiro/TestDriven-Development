@@ -10,15 +10,15 @@ namespace Money;
 
 class Money implements Expression
 {
-    protected $amount;
-    protected $currency;
+    public $amount;
+    public $currency;
 
     /**
      * Money constructor.
      * @param $amount
      * @param $currency
      */
-    public function __construct($amount, $currency)
+    public function __construct(int $amount, string $currency)
     {
         $this->amount = $amount;
         $this->currency = $currency;
@@ -26,7 +26,7 @@ class Money implements Expression
 
     public function plus(Money $addend): Expression
     {
-        return new Money($this->amount + $addend->amount, $this->currency);
+        return new Sum($this, $addend);
     }
 
     public function times(int $multiplier): Money
@@ -52,5 +52,10 @@ class Money implements Expression
     public static function franc(int $amount): Money
     {
         return new Money($amount, 'CHF');
+    }
+
+    public function reduce(string $to)
+    {
+        return $this;
     }
 }
