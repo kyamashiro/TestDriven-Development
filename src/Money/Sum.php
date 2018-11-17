@@ -8,7 +8,6 @@
 
 namespace Money;
 
-
 class Sum implements Expression
 {
     public $augend;
@@ -23,5 +22,11 @@ class Sum implements Expression
     {
         $this->augend = $augend;
         $this->addend = $addend;
+    }
+
+    public function reduce(string $to)
+    {
+        $amount = $this->augend->amount + $this->addend->amount;
+        return new Money($amount, $to);
     }
 }
