@@ -52,12 +52,12 @@ class Money implements Expression
 
     public static function dollar(int $amount): Money
     {
-        return new Money($amount, 'USD');
+        return new Money($amount, "USD");
     }
 
     public static function franc(int $amount): Money
     {
-        return new Money($amount, 'CHF');
+        return new Money($amount, "CHF");
     }
 
     public function reduce(Bank $bank, string $to)
