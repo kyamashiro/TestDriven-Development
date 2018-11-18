@@ -9,6 +9,11 @@
 namespace Money;
 
 
+/**
+ * 通貨の組をレートに紐づけするためのクラス
+ * Class Pair
+ * @package Money
+ */
 class Pair
 {
     /**
@@ -31,13 +36,13 @@ class Pair
         $this->to = $to;
     }
 
-    public function equals(object $object)
+    public function equals(object $object): bool
     {
         $pair = $object;
         return $this->from === $pair->from && $this->to === $pair->to && $pair instanceof Pair;
     }
 
-    public function hashCode()
+    public function hashCode(): int
     {
         return 0;
     }

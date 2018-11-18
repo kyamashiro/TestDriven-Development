@@ -8,23 +8,12 @@
 
 namespace Money;
 
-use SplObjectStorage;
-
 class Bank
 {
     /**
-     * @var SplObjectStorage
+     * @var array
      */
     private $rates;
-
-    /**
-     * Bank constructor.
-     * @param SplObjectStorage $rates
-     */
-    public function __construct()
-    {
-        $this->rates = new SplObjectStorage();
-    }
 
     public function reduce(Expression $source, string $to): Money
     {
@@ -33,10 +22,8 @@ class Bank
 
     public function addRate(string $from, string $to, int $rate): void
     {
-        $this->rates = new SplObjectStorage();
         //Objectをkeyにできないので､Objectをシリアル化して文字列に変換しそれをキーとした｡
-        //serialize(new Pair($from, $to))
-        $this->rates->offsetSet(new Pair($from, $to), $rate);
+        $this->rates = [serialize(new Pair($from, $to)) => $rate];
     }
 
     public function rate(string $from, string $to): int
@@ -45,9 +32,6 @@ class Bank
         if ($from === $to) {
             return 1;
         }
-        //[serialize(new Pair($from, $to))]
-        var_dump($this->rates->current());
-        var_dump($this->rates);
-        return $this->rates->offsetGet(new Pair($from, $to));
+        return $this->rates[serialize(new Pair($from, $to))];
     }
 }
