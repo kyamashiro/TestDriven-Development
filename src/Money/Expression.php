@@ -10,7 +10,9 @@ namespace Money;
 
 interface Expression
 {
-    public function reduce(Bank $bank, string $to): Money;
+    function reduce(Bank $bank, string $to): Money;
 
-    public function plus(Expression $added): Expression;
+    function plus(Expression $added): Expression;
+
+    function times(int $multiplier): Expression;
 }

@@ -88,9 +88,36 @@ class Test extends TestCase
         $bank = new Bank();
         $bank->addRate("CHF", "USD", 2);
         $result = $bank->reduce($fiveBucks->plus($tenFrancs), "USD");
-        var_dump($result);
-        var_dump(Money::dollar(10));
         //15USDが返ってくる
         $this->assertEquals(Money::dollar(10), $result);
     }
+
+    public function testSumPlusMoney()
+    {
+        $fiveBucks = Money::dollar(5);
+        $tenFrancs = Money::franc(10);
+        $bank = new Bank();
+        $bank->addRate("CHF", "USD", 2);
+        $sum = (new Sum($fiveBucks, $tenFrancs))->plus($fiveBucks);
+        $result = $bank->reduce($sum, "USD");
+        $this->assertEquals(Money::dollar(15), $result);
+    }
+
+    public function testSumTimes()
+    {
+        $fiveBucks = Money::dollar(5);
+        $tenFrancs = Money::franc(10);
+        $bank = new Bank();
+        $bank->addRate("CHF", "USD", 2);
+        $sum = (new Sum($fiveBucks, $tenFrancs))->times(2);
+        $result = $bank->reduce($sum, "USD");
+        $this->assertEquals(Money::dollar(20), $result);
+    }
+
+//    public function testPlusSameCurrencyReturnsMoney()
+//    {
+//        $sum = Money::dollar(1)->plus(Money::dollar(1));
+//        var_dump($sum);
+//        $this->assertTrue($sum instanceof Money);
+//    }
 }
