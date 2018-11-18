@@ -60,9 +60,9 @@ class Money implements Expression
         return new Money($amount, "CHF");
     }
 
-    public function reduce(Bank $bank, string $to)
+    public function reduce(Bank $bank, string $to): Money
     {
-        $rate = $bank->addRate($this->currency, $to);
+        $rate = $bank->rate($this->currency, $to);
         return new Money($this->amount / $rate, $to);
     }
 }
