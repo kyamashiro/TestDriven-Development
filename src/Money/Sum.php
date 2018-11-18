@@ -11,10 +11,12 @@ namespace Money;
 class Sum implements Expression
 {
     /**
+     * 被加算数
      * @var Money
      */
     public $augend;
     /**
+     * 加数
      * @var Money
      */
     public $addend;
@@ -24,7 +26,7 @@ class Sum implements Expression
      * @param $augend
      * @param $addend
      */
-    public function __construct(Money $augend, Money $addend)
+    public function __construct(Expression $augend, Expression $addend)
     {
         $this->augend = $augend;
         $this->addend = $addend;
@@ -32,7 +34,12 @@ class Sum implements Expression
 
     public function reduce(Bank $bank, string $to): Money
     {
-        $amount = $this->augend->amount + $this->addend->amount;
+        $amount = $this->augend->reduce($bank, $to)->amount + $this->addend->reduce($bank, $to)->amount;
         return new Money($amount, $to);
+    }
+
+    public function plus(Expression $added): Expression
+    {
+        return null;
     }
 }
