@@ -10,7 +10,13 @@ namespace Money;
 
 class Money implements Expression
 {
+    /**
+     * @var int
+     */
     public $amount;
+    /**
+     * @var string
+     */
     public $currency;
 
     /**
@@ -46,16 +52,17 @@ class Money implements Expression
 
     public static function dollar(int $amount): Money
     {
-        return new Money($amount, 'USD');
+        return new Money($amount, "USD");
     }
 
     public static function franc(int $amount): Money
     {
-        return new Money($amount, 'CHF');
+        return new Money($amount, "CHF");
     }
 
-    public function reduce(string $to)
+    public function reduce(Bank $bank, string $to): Money
     {
-        return $this;
+        $rate = $bank->rate($this->currency, $to);
+        return new Money($this->amount / $rate, $to);
     }
 }
