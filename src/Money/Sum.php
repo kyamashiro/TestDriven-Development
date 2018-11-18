@@ -40,6 +40,11 @@ class Sum implements Expression
 
     public function plus(Expression $added): Expression
     {
-        return null;
+        return new Sum($this, $added);
+    }
+
+    public function times(int $multiplier): Expression
+    {
+        return new Sum($this->augend->times($multiplier), $this->addend->times($multiplier));
     }
 }
