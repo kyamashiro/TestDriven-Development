@@ -1,6 +1,6 @@
 # TestDriven-Development
 ## 環境
-WindowsHome 64bit  
+Windows10 Home 64bit  
 Vagrant  
 CentOS7  
 PHP 7.2.12  
