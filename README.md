@@ -4,7 +4,7 @@ Windows10 Home 64bit
 Vagrant  
 CentOS7  
 PHP 7.2.12  
-PHPStorm2018.2  
+PhpStorm2018.2  
   
 /TestDriven-Development  
   
@@ -21,7 +21,7 @@ composer.jsonの作成
 composer install --dev
 `
 
-## PHPStormの設定
+## PhpStormの設定
 ### 設定→言語&テストフレームワーク→PHP  
 ![](https://user-images.githubusercontent.com/36433535/48313946-23d2a600-e606-11e8-8f42-e6d9dc5781bf.png)  
 ![](https://user-images.githubusercontent.com/36433535/48313952-2503d300-e606-11e8-8179-34536c28221f.png)
